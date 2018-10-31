@@ -5,7 +5,7 @@ let x = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMW
 var express = require('express')
 var dingRobot = require('./robot')
 
-import token from './token'
+import {token, requestToken} from './token'
 
 var app = new express()
 var robot = new dingRobot(token)
@@ -23,7 +23,19 @@ const transPic = status => {
     }
 }
 
+const checkRequestValid = req => {
+    //验证webhooks头信息
+    if (!req.header['x-gitlab-event'] || req.header['x-gitlab-token'] !== requestToken) {
+        console.error('wrong x-gitlab-event OR x-gitlab-token')
+        return false
+    }
+}
+
 app.post('/api', bodyParser, (req, res) => {
+    if (checkRequestValid(req)) {
+        res.send("bad request")
+    }
+
     let body = req.body
     if (body['object_kind'] === 'pipeline' && body["object_attributes"]["detailed_status"].indexOf('已') > -1) {
         robot.send({

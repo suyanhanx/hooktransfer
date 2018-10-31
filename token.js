@@ -1,3 +1,4 @@
 const token = ''
+const requestToken = ''
 
-export default token
+export {token, requestToken}
