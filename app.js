@@ -5,7 +5,10 @@ let x = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMW
 var express = require('express')
 var dingRobot = require('./robot')
 
-import {token, requestToken} from './token'
+var secure = require('./token')
+
+let token = secure.token
+let requestToken = secure.requestToken
 
 var app = new express()
 var robot = new dingRobot(token)

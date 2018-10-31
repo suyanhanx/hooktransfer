@@ -1,4 +1,4 @@
-const token = ''
-const requestToken = ''
-
-export {token, requestToken}
+module.exports = {
+    token: '',
+    requestToken: ''
+}
