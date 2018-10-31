@@ -1,0 +1,3 @@
+apps:
+  - script: 'app.js'
+    name: 'pm2-docker'
