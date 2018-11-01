@@ -1,15 +1,14 @@
 {
-    "name": "pm2-docker",
+    "name": "gitlab-dingtalk-transfer",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "转发gitlab webhook消息到钉钉群",
+    "main": "app.js",
     "scripts": {
         "dev": "pm2-dev process.yml",
         "start": "pm2-docker process.yml"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "suyan",
+    "license": "MIT",
     "dependencies": {
         "express": "^4.14.0",
         "body-parser": "^1.18.3"
