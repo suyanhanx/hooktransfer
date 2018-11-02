@@ -40,14 +40,14 @@ app.post('/api', bodyParser, (req, res) => {
     }
 
     let body = req.body
-    if (body['object_kind'] === 'pipeline' && body["object_attributes"]["detailed_status"].indexOf('已') > -1) {
+    if (body['object_kind'] === 'pipeline' && body['object_attributes']['detailed_status'].indexOf('已') > -1) {
         robot.send({
             msgtype: 'link',
             link: {
-                text: `分支：${body["object_attributes"]["ref"]} 耗时：${body["object_attributes"]["duration"]}`,
-                picUrl: transPic(body["object_attributes"]["detailed_status"]),
-                title: `${body.project["path_with_namespace"]}#${body["object_attributes"].id} 构建${body["object_attributes"]["detailed_status"]}`,
-                messageUrl: `${body.project['web_url']}`
+                text: `分支：${body['object_attributes']['ref']} 耗时：${body['object_attributes']['duration']}`,
+                picUrl: transPic(body['object_attributes']['detailed_status']),
+                title: `${body.project['path_with_namespace']}#${body['object_attributes'].id} 构建${body['object_attributes']['detailed_status']}`,
+                messageUrl: `${body.project['web_url']}/pipelines/${body['object_attributes'].id}`
             }
         }, function (err, data) {
             if (err) {
@@ -59,8 +59,8 @@ app.post('/api', bodyParser, (req, res) => {
     }
 
     res.send({
-        "errmsg": "ok",
-        "errcode": 0
+        'errmsg': 'ok',
+        'errcode': 0
     })
 })
 
